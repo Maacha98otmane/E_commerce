@@ -11,6 +11,7 @@ const sellerSchema = new mongoose.Schema({
         values: ['Starter','Pro', 'Expert'],
         message: 'is not supported'
       },
+      default:"Starter",
       },
       user: {
         type: mongoose.Schema.Types.ObjectId,

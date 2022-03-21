@@ -48,6 +48,7 @@ userSchema.methods = {
   authenticate: function(pass){
     return this.cryptPass(pass) === this.hashed_password;
   },
+  
   cryptPass: function (password) {
     if (!password) return '';
     try {

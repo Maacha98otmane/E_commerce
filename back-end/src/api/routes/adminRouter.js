@@ -3,15 +3,15 @@ const router = express.Router();
 
 
 import {
-    loginAdmin,
+    loginSuperAdmin,
     logout
 } from "../controllers"
 
-import {
-    CreatUserValidator,
-    Auth
-} from "../middlewares"
+// import {
+//     CreatUserValidator,
+//     Auth
+// } from "../middlewares"
 
-router.post("/login", loginAdmin)
+router.post("/login", loginSuperAdmin)
 router.get("/logout", logout)
 export { router }

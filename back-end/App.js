@@ -11,7 +11,7 @@ const port = process.env.port;
 
 const app = express();
 
-//mide
+//mid
 app.use(express.json());
 app.use(cors())
 app.use(expressvalidator());
