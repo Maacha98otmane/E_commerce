@@ -13,3 +13,7 @@ from "./shippingCompanyContoller";
 
 export { getProduct ,getAllProduct, addProduct, deleteProduct, updateProduct}
 from "./productController";
+
+
+export { createSeller, removeSeller, searchSeller, updateSeller, getAllSellers, getSeller }
+from "./sellerController";
