@@ -6,3 +6,6 @@ from "./authController"
 
 export { getCategory ,getAllCategory, addCategory, deleteCategory, updateCategory}
 from "./categoryController";
+
+export { getShippingCompany ,getAllShippingCompany, addShippingCompany, deleteShippingCompany, updateShippingCompany}
+from "./shippingCompanyContoller";
