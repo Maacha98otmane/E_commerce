@@ -9,3 +9,7 @@ from "./categoryController";
 
 export { getShippingCompany ,getAllShippingCompany, addShippingCompany, deleteShippingCompany, updateShippingCompany}
 from "./shippingCompanyContoller";
+
+
+export { getProduct ,getAllProduct, addProduct, deleteProduct, updateProduct}
+from "./productController";
