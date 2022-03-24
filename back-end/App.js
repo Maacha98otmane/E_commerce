@@ -4,7 +4,7 @@ import expressvalidator from "express-validator";
 import cookieParser from "cookie-parser";
 require("dotenv").config();
 import connectDB from "./src/config/db"
-import { adminRouter,categoryRouter,shippingCompanyRouter,productRouter } from "./src/api/routes";
+import { adminRouter,categoryRouter,shippingCompanyRouter,productRouter,sellerRouter } from "./src/api/routes";
 
 const host = process.env.host;
 const port = process.env.port;
@@ -23,6 +23,7 @@ app.use("/api/admin", adminRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/shippingCompany", shippingCompanyRouter);
 app.use("/api/product", productRouter);
+app.use("/api/seller", sellerRouter);
 
 app.listen(port, () => {
   console.log(`Running on http://${host}:${port}`);
