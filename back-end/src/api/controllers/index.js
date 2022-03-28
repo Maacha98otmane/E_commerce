@@ -1,5 +1,3 @@
-export {loginSuperAdmin,signupSuperAdmin}
-from "./superAdminController"
 
 export {login,logout}
 from "./authController"
@@ -17,3 +15,12 @@ from "./productController";
 
 export { createSeller, removeSeller, searchSeller, updateSeller, getAllSellers, getSeller }
 from "./sellerController";
+
+export { createAdmin, removeAdmin, searchAdmin, updateAdmin, getAllAdmins, getAdmin }
+from "./adminController";
+
+export {loginAdmin,logoutAdmin}
+from "./Auth/auth_AdminController";
+
+export {loginSuperAdmin,logoutSuperAdmin}
+from "./Auth/auth_SuperAdminController";

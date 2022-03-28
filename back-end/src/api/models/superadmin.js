@@ -20,7 +20,11 @@ const superadminSchema = new mongoose.Schema({
   },
   salt: {
     type: String
-  }
+  },
+  role: {
+    type: String,
+    default: 'SUPERADMIN',
+  },
 }, {
   timestamps: true
 });

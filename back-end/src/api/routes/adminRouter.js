@@ -3,15 +3,20 @@ const router = express.Router();
 
 
 import {
-    loginSuperAdmin,
-    logout
+    createAdmin, removeAdmin, searchAdmin, updateAdmin, getAllAdmins, getAdmin,loginAdmin,logoutAdmin
 } from "../controllers"
 
 // import {
 //     CreatUserValidator,
 //     Auth
 // } from "../middlewares"
+router.post("/login", loginAdmin)
+router.get("/getOne/:id", getAdmin)
+router.get("/getAll", getAllAdmins)
+router.post("/create", createAdmin)
+router.delete("/delete/:id", removeAdmin)
+router.patch("/update/:id", updateAdmin)
+router.get("/logout", logoutAdmin)
 
-router.post("/login", loginSuperAdmin)
-router.get("/logout", logout)
+
 export { router }

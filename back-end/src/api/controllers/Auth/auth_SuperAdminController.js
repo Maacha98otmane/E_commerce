@@ -1,17 +1,17 @@
-const SuperAdmin = require('../models/superadmin')
+const SuperAdmin = require('../../models/superadmin')
 import { createToken } from "../helpers";
 
-const signupSuperAdmin = (req, res) => {
+// const signup = (req, res) => {
 
-    const superAdmin = new SuperAdmin(req.body);
-    superAdmin.save((err, superAdmin) => {
-        if (err) {
-            return res.status(400).send(err)
-        }
-        res.send(superAdmin)
-    })
+//     const superAdmin = new SuperAdmin(req.body);
+//     superAdmin.save((err, superAdmin) => {
+//         if (err) {
+//             return res.status(400).send(err)
+//         }
+//         res.send(superAdmin)
+//     })
 
-}
+// }
 const loginSuperAdmin = (req, res) => {
 
     const {
@@ -35,8 +35,8 @@ const loginSuperAdmin = (req, res) => {
             })
         }
 
-        const token = createToken({ superAdmin }, "SUPER_ADMIN");
-        res.cookie('token', token, {
+        const token = createToken({ superAdmin }, "SUPERADMIN");
+        res.cookie('tokenSuperAdmin', token, {
             expires: new Date(Date.now() + 4 * 3600000)
         })
         return token
@@ -46,4 +46,13 @@ const loginSuperAdmin = (req, res) => {
 
 
 }
-export {loginSuperAdmin,signupSuperAdmin}
+const logoutSuperAdmin = (req, res) => {
+    res.clearCookie('tokenSuperAdmin');
+    res.json({
+        message: "Logout"
+    })
+}
+export {
+    loginSuperAdmin,
+    logoutSuperAdmin
+}
