@@ -1,7 +1,7 @@
 import User from "../models/user.js"
 import Admin from "../models/admin"
 const logger = require('../../config/winston');
-const EmailSend = require('../helpers/email')
+const EmailSend = require('../helpers/email');
 
 
 const createAdmin = (req, res) => {

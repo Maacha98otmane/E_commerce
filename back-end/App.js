@@ -3,21 +3,25 @@ import cors from "cors";
 import expressvalidator from "express-validator";
 import cookieParser from "cookie-parser";
 require("dotenv").config();
-import connectDB from "./src/config/db"
-import { adminRouter,categoryRouter,shippingCompanyRouter,productRouter,sellerRouter } from "./src/api/routes";
-
+import connectDB from "./src/config/db";
+import { 
+          categoryRouter,
+          adminRouter,
+          shippingCompanyRouter,
+          productRouter,
+          sellerRouter 
+        } from './src/api/routes/'
 const host = process.env.host;
 const port = process.env.port;
 
 const app = express();
 
-//mid
+// //mid
 app.use(express.json());
 app.use(cors())
 app.use(expressvalidator());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-
 
 app.use("/api/admin", adminRouter);
 app.use("/api/category", categoryRouter);

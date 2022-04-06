@@ -1,5 +1,5 @@
 const Admin = require('../../models/admin')
-import { createToken } from "../helpers";
+import { createToken } from "../../helpers";
 
 // const signup = (req, res) => {
 

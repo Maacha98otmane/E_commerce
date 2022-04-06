@@ -1,6 +1,6 @@
-import User from "../models/user.js"
-import { createToken } from "../helpers";
-const logger = require('../../config/winston');
+import User from "../../models/user.js"
+import { createToken } from "../../helpers";
+const logger = require('../../../config/winston');
 
 const login = (req, res) => {
     const {
@@ -18,6 +18,7 @@ const login = (req, res) => {
                 error: 'User not Found with this email@'
             })
         }
+        
         if (!result.authenticate(password)) {
             return res.status(401).json({
                 isLogged: false,

@@ -1,5 +1,5 @@
 const SuperAdmin = require('../../models/superadmin')
-import { createToken } from "../helpers";
+import { createToken } from "../../helpers";
 
 // const signup = (req, res) => {
 

@@ -1,16 +1,15 @@
-import User from "../models/user.js"
-import Seller from "../models/seller"
-const logger = require('../../config/winston');
-const EmailSend = require('../helpers/email')
+import Customer from "../models/customer";
+import User from "../models/user";
+import EmailSend from "../helpers/email";
+import Order from "../models/orders";
 
 
-const createSeller = (req, res) => {
-
+const createCustomer = (req, res) => {
+    
     const {
         firstName,
         lastName,
         email,
-        document,
         password,
         Address,
         zipCode,
@@ -21,7 +20,6 @@ const createSeller = (req, res) => {
     const UserData = {
         firstName,
         lastName,
-
         email,
         password,
         role: "CUSTOMER",
@@ -35,18 +33,17 @@ const createSeller = (req, res) => {
             return res.status(400).send(err)
 
         }
-        const SellerData = {
+        const CostumerData = {
             Address: Address,
             city: city,
-            document: document,
             zipCode : zipCode,
             phone : phone,
             user: user._id,
             _id: user._id, 
 
         }
-        const seller = new Seller(SellerData);
-        seller.save(async (err, seller) => {
+        const costumer = new Customer(CostumerData);
+        costumer.save(async (err, Manager) => {
 
             if (err) {
                 const user = await User.findById({
@@ -56,28 +53,57 @@ const createSeller = (req, res) => {
                 // logger.error(err);
                 return res.status(400).send(err)
             }
+            
+
+            //Email Verification
+            const { id } = user._id;
+
+            let subj = "Inoformation";
+            let msg = `confirm_email : http://localhost:3030/api/customer/confirmEmail/${id}`;
+            EmailSend.mail(email, subj, msg)
+            
             user.hashed_password=undefined
             user.salt=undefined
             
             // logger.info(`Costumer user:${req.body.username} created!`);
             return res.json({
                 user,
-                seller
+                costumer
             })
         })
 
     })
 }
-const updateSeller = async (req, res) => {
+
+const confirmEmail = async (req, res) => {
+
+            try {
+            const { id } = req.params;
+            await Customer.findOneAndUpdate({id}, {"isVerified":true});
+
+            res.status(200).json({
+                status: true,
+                message: "Your Account is now Verified"
+            })
+
+            } catch (e) {
+            res.status(400).json({
+                status: false,
+                message: e.message
+                })
+            }
+}
+
+const updateCustomer = async (req, res) => {
     console.log(req.body)
     try {
        if (req.body.username) {
-          await Seller.findOneAndUpdate({ _id: req.params.id }, req.body);
+          await Customer.findOneAndUpdate({ _id: req.params.id }, req.body);
        }
        if (req.body.email || req.body.password) {
           await User.findOneAndUpdate({ _id: req.params.id }, req.body.email)
        }
-       logger.info(`Seller user:${req.body.username} Updated!`);
+       logger.info(`Customer user:${req.body.username} Updated!`);
        res.status(200).json({
           status: true,
           message: "Updated successfuly"
@@ -176,4 +202,40 @@ const getSeller = async (req, res) => {
 }
 
 
-export { createSeller, removeSeller, searchSeller, updateSeller, getAllSellers, getSeller }
+// create orders
+const createOrder = async (req, res) => {
+    const {
+        
+        products,
+        quantity,
+        status,
+    } = req.body;
+
+    const order = new Order({
+        products,
+        quantity,
+        status,
+    });
+
+    try {
+        const savedOrder = await order.save();
+        res.status(200).json({
+            status: true,
+            data: savedOrder
+        })
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message
+        })
+    }
+}
+
+
+
+
+
+
+
+
+export {createCustomer,confirmEmail,createOrder}

@@ -1,26 +1,19 @@
 
-export {login,logout}
-from "./authController"
+export {login,logout} from "./Auth/auth_UserController"
 
 export { getCategory ,getAllCategory, addCategory, deleteCategory, updateCategory}
 from "./categoryController";
 
-export { getShippingCompany ,getAllShippingCompany, addShippingCompany, deleteShippingCompany, updateShippingCompany}
-from "./shippingCompanyContoller";
+export { getShippingCompany ,getAllShippingCompany, addShippingCompany, deleteShippingCompany, updateShippingCompany} from "./shippingCompanyContoller";
 
 
-export { getProduct ,getAllProduct, addProduct, deleteProduct, updateProduct}
-from "./productController";
+export { getProduct ,getAllProduct, addProduct, deleteProduct, updateProduct} from "./productController";
 
 
-export { createSeller, removeSeller, searchSeller, updateSeller, getAllSellers, getSeller }
-from "./sellerController";
+export { createSeller, removeSeller, searchSeller, updateSeller, getAllSellers, getSeller } from "./sellerController";
 
-export { createAdmin, removeAdmin, searchAdmin, updateAdmin, getAllAdmins, getAdmin }
-from "./adminController";
+export { createAdmin, removeAdmin, searchAdmin, updateAdmin, getAllAdmins, getAdmin } from "./adminController";
 
-export {loginAdmin,logoutAdmin}
-from "./Auth/auth_AdminController";
+export {loginAdmin,logoutAdmin} from "./Auth/auth_AdminController";
 
-export {loginSuperAdmin,logoutSuperAdmin}
-from "./Auth/auth_SuperAdminController";
+export {loginSuperAdmin,logoutSuperAdmin} from "./Auth/auth_SuperAdminController";
