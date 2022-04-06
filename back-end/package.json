@@ -4,8 +4,7 @@
   "main": "index.js",
   "license": "ISC",
   "scripts": {
-    "dev": "nodemon — exec babel-node App.js"
-
+    "dev": "nodemon --exec babel-node App.js"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -17,6 +16,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^14.1.1",
+    "email-verifier": "^0.4.1",
     "express": "^4.17.2",
     "express-validator": "5",
     "jsonwebtoken": "^8.5.1",
@@ -24,7 +24,6 @@
     "mongoose-reverse-populate-v2": "^1.2.4",
     "nodemailer": "^6.7.2",
     "uuid": "^8.3.2",
-    "winston": "^3.4.0",
-    "winston-mongodb": "^5.0.7"
+    "winston": "^3.4.0"
   }
 }
