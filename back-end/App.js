@@ -6,6 +6,9 @@ require("dotenv").config();
 import connectDB from "./src/config/db";
 import { 
           categoryRouter,
+          orderRouter,
+          stripeRouter,
+          cartRouter,
           adminRouter,
           superAdminRouter,
           brandRouter,
@@ -30,6 +33,9 @@ app.use("/api/superAdmin", superAdminRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/brand", brandRouter);
 app.use("/api/shippingCompany", shippingCompanyRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
+app.use("/api/stripe", stripeRouter);
 app.use("/api/product", productRouter);
 app.use("/api/seller", sellerRouter);
 

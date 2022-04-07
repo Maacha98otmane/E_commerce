@@ -167,34 +167,6 @@ const confirmEmail = async (req, res) => {
 }
 
 
-// create orders
-const createOrder = async (req, res) => {
-
-    const {
-        products,
-        quantity,
-        status,
-    } = req.body;
-
-    const order = new Order({
-        products,
-        quantity,
-        status,
-    });
-
-    try {
-        const savedOrder = await order.save();
-        res.status(200).json({
-            status: true,
-            data: savedOrder
-        })
-    } catch (e) {
-        res.status(400).json({
-            status: false,
-            message: e.message
-        })
-    }
-}
 
 
 
@@ -203,4 +175,4 @@ const createOrder = async (req, res) => {
 
 
 
-export {createCustomer,confirmEmail,createOrder, deleteCustomer, updateCustomer}
+export {createCustomer,confirmEmail, deleteCustomer, updateCustomer}
