@@ -1,10 +1,10 @@
-import ShippingCompany from "../models/shippingcompany";
+import Brand from "../models/brand";
 
-const getShippingCompany = async (req, res) => {
+const getBrand = async (req, res) => {
 
     const { id } = req.params
     try {
-        const doc = await ShippingCompany.find({_id : id});
+        const doc = await Brand.find({_id : id});
         return res.status(200).json({
             status : true,
             message : doc
@@ -18,10 +18,10 @@ const getShippingCompany = async (req, res) => {
     
 }
 
-const getAllShippingCompany = async (req, res) => {
+const getAllBrand = async (req, res) => {
 
     try {
-        const docs = await ShippingCompany.find();
+        const docs = await Brand.find();
         return res.status(200).json({
             status : true,
             message : docs
@@ -35,14 +35,14 @@ const getAllShippingCompany = async (req, res) => {
     
 } 
 
-const addShippingCompany = async (req, res) => {
+const addBrand = async (req, res) => {
 
     try{
-        const { name,time } = req.body  
-        const shippingcompany = await ShippingCompany.create({ name,time });
+        const { name } = req.body  
+        const brand = await Brand.create({ name });
         return res.status(201).json({
             status : true,
-            message : shippingcompany
+            message : brand
         })
     }catch(err){
         return res.status(400).json({
@@ -52,14 +52,14 @@ const addShippingCompany = async (req, res) => {
     }
 }
 
-const deleteShippingCompany = async (req, res) => {
+const deleteBrand = async (req, res) => {
 
     try {
         const {
            id,
         } = req.params
   
-        await ShippingCompany.findOneAndRemove({ _id: id })
+        await Brand.findOneAndRemove({ _id: id })
         res.status(200).json({
            status: true,
            message: "deleted successfully"
@@ -72,12 +72,12 @@ const deleteShippingCompany = async (req, res) => {
      }
 }
 
-const updateShippingCompany = async (req, res) => {
+const updateBrand = async (req, res) => {
 
     try {
         const { id } = req.params;
-        const { name,time } = req.body;
-        await ShippingCompany.findOneAndUpdate({id}, {name,time});
+        const { name } = req.body;
+        await Brand.findOneAndUpdate({id}, {name});
 
         res.status(200).json({
            status: true,
@@ -93,4 +93,4 @@ const updateShippingCompany = async (req, res) => {
 
 
 
-export { getShippingCompany ,getAllShippingCompany, addShippingCompany, deleteShippingCompany, updateShippingCompany}
+export { getBrand ,getAllBrand, addBrand, deleteBrand, updateBrand}

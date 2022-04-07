@@ -26,7 +26,7 @@ const login = (req, res) => {
             })
         }
         logger.info(`login: ${result.email} logged!`);
-        const token = createToken({ result }, result.role);
+        const token = createToken({ id:result._id,role:result.role }, result.role);
         res.cookie('token', token, {
             expires: new Date(Date.now() + 4 * 3600000)
         })

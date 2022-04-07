@@ -7,6 +7,8 @@ import connectDB from "./src/config/db";
 import { 
           categoryRouter,
           adminRouter,
+          superAdminRouter,
+          brandRouter,
           shippingCompanyRouter,
           productRouter,
           sellerRouter 
@@ -24,7 +26,9 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/admin", adminRouter);
+app.use("/api/superAdmin", superAdminRouter);
 app.use("/api/category", categoryRouter);
+app.use("/api/brand", brandRouter);
 app.use("/api/shippingCompany", shippingCompanyRouter);
 app.use("/api/product", productRouter);
 app.use("/api/seller", sellerRouter);
