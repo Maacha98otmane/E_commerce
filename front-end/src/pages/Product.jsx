@@ -1,12 +1,19 @@
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Announce from "../components/Announce";
-import Products from "../components/Products";
+// import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { mobile } from "../responsive";
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
+
+
 
 
 const Container = styled.div``
@@ -120,24 +127,45 @@ const Button = styled.button`
 `
 
 const Product = () => {
+  const location = useLocation();
+  const productId = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await axios.get("http://localhost:3030/api/product/getOne/" + productId);
+        setProduct(res.data.message[0]);
+      } catch {}
+    };
+    getProduct();
+  }, [productId]);
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+  const handleClick = () => {
+    dispatch(addProduct({...product, quantity}));
+  };
   return (
     <Container>
         <Navbar />
         <Announce />
         <Wrapper>
             <ImgContainer>
-                <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" alt="product" />
+                <Image src={product.photo} alt="product" />
             </ImgContainer>
             <InfoContainer>
-                <Title>Product 1</Title>
-                <Desc>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing 
-                    elit. Vel aperiam enim, voluptates necessitatibus 
-                    repellat magni neque sint culpa tempore asperiores 
-                    ex vero repudiandae, 
-                    ea cupiditate error quos minima maiores similique.
-                </Desc>
-                <Price>$20</Price>
+                <Title>{product.name}</Title>
+                <Desc>{product.description}</Desc>
+                <Price>{product.price}</Price>
                 <FilterContainer>
                     <Filter>
                         <FilterTitle>Color</FilterTitle>
@@ -158,11 +186,14 @@ const Product = () => {
                 </FilterContainer>
                 <AddContainer>
                     <AmountContainer>
-                        <RemoveIcon />
-                        <Amount>1</Amount>
-                        <AddIcon />
+                        <RemoveIcon  onClick={() => handleQuantity("dec")}/>
+                        <Amount>{quantity}</Amount>
+                        <AddIcon onClick={() => handleQuantity("inc")}/>
                     </AmountContainer>
-                    <Button>ADD TO CART</Button>
+                    <Button 
+                    onClick={handleClick}
+                    >ADD TO CART
+                    </Button>
                 </AddContainer>       
             </InfoContainer>
 
