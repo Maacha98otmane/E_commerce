@@ -9,11 +9,14 @@ import { useSelector } from "react-redux";
 import StripeCheckout from 'react-stripe-checkout';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router";
+import { useNavigate } from 'react-router-dom';
+import ReactPayPal from './ReactPaypal';
 
 
 
-const KEY = process.env.REACT_APP_STRIPE_KEY;
+
+
+const KEY = "pk_test_51Klo3aICzJTzARWAGQGR0wguewl3XBVqF9thTRuRzF0WSwSkqVf05URmpRcQdZvbZqyjPWBq0GvFHvmGo3Kk1OBj00RQBRsOCa";
 
 const Container = styled.div``
 
@@ -161,19 +164,10 @@ const SummaryItemText = styled.span``
 
 const SummaryItemPrice = styled.span``
 
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  font-weight: 600;
-`
-
-
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
 
   const onToken = (token) => {
@@ -185,16 +179,19 @@ const Cart = () => {
       try {
         const res = await axios.post("http://localhost:3030/api/stripe/payment", {
           tokenId: stripeToken.id,
-          amount: 500,
+          amount: cart.total * 100,
         });
-        history.push("/success", {
+        navigate("/success", {
           stripeData: res.data,
           products: cart, });
       } catch {}
     };
     stripeToken && makeRequest();
-  }, [stripeToken, cart.total, history]);
+  }, [stripeToken, cart.total, navigate]);
+
+
   return (
+
     <Container>
         <Navbar/>
         <Announce/>
@@ -252,7 +249,7 @@ const Cart = () => {
                         <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                     </SummaryItem>
                     <StripeCheckout
-                      name="Lama Shop"
+                      name="Mega Store"
                       image="https://avatars.githubusercontent.com/u/63611548?v=4"
                       billingAddress
                       shippingAddress
@@ -261,6 +258,9 @@ const Cart = () => {
                       token={onToken}
                       stripeKey={KEY}
                     ></StripeCheckout>
+        
+                      <ReactPayPal amount={cart.total} />
+                       
                 </Summary>
             </Bottom>
         </Wrapper>
