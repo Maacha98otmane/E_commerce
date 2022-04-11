@@ -2,8 +2,18 @@ const mongoose = require('mongoose');
 const User = require('./user')
 const sellerSchema = new mongoose.Schema({
   document: {
-    data: Buffer,
-    contentType: String
+    // data: Buffer,
+    // contentType: String
+    type: String,
+    required: true,
+    
+  },
+  nameStore: {
+    // data: Buffer,
+    // contentType: String
+    type: String,
+    required: true,
+
   },
   status: {
     type: String,

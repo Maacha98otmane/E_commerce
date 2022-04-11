@@ -12,7 +12,7 @@ export { getShippingCompany ,getAllShippingCompany, addShippingCompany, deleteSh
 export { getProduct ,getAllProduct, addProduct, deleteProduct, updateProduct} from "./productController";
 
 
-export { createSeller, removeSeller, searchSeller, updateSeller, getAllSellers, getSeller,getSellerStatus } from "./sellerController";
+export { createSeller, removeSeller, searchSeller, updateSeller, getAllSellers, getSeller,getSellerStatus,confirmAccount } from "./sellerController";
 
 export { createAdmin, removeAdmin, searchAdmin, updateAdmin, getAllAdmins, getAdmin } from "./adminController";
 export { createSuperAdmin, updateSuperAdmin, getSuperAdmin } from "./superAdminController";

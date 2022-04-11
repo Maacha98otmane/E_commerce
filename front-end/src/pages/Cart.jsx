@@ -16,7 +16,7 @@ import ReactPayPal from './ReactPaypal';
 
 
 
-const KEY = "pk_test_51Klo3aICzJTzARWAGQGR0wguewl3XBVqF9thTRuRzF0WSwSkqVf05URmpRcQdZvbZqyjPWBq0GvFHvmGo3Kk1OBj00RQBRsOCa";
+const KEY = process.env.REACT_APP_STRIPE_KEY;
 
 const Container = styled.div``
 
@@ -169,6 +169,7 @@ const Cart = () => {
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
 
+  console.log(KEY);
 
   const onToken = (token) => {
     setStripeToken(token);

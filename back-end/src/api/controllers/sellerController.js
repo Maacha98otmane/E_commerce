@@ -1,5 +1,6 @@
 import User from "../models/user.js"
 import Seller from "../models/seller"
+import Store from "../models/store"
 const logger = require('../../config/winston');
 const EmailSend = require('../helpers/email')
 
@@ -13,18 +14,18 @@ const createSeller = (req, res) => {
         document,
         password,
         Address,
-        zipCode,
+        nameStore,
         phone,
-        city
     } = req.body;
 
     const UserData = {
         firstName,
         lastName,
-
+        Address,
+        phone,
         email,
         password,
-        role: "CUSTOMER",
+        role: "SELLER",
 
     }
 
@@ -36,11 +37,8 @@ const createSeller = (req, res) => {
 
         }
         const SellerData = {
-            Address: Address,
-            city: city,
             document: document,
-            zipCode : zipCode,
-            phone : phone,
+            nameStore:nameStore,
             user: user._id,
             _id: user._id, 
 
@@ -199,6 +197,37 @@ const getSellerStatus = async (req, res) => {
     }
 }
 
+const confirmAccount = async (req, res) => {
+
+    try {
+    const { id } = req.params;
+    let doc = await Seller.findOneAndUpdate({id}, {"isVerified":true},{new: true });
+    if(!doc){
+        return res.status(400).json({
+            status: false,
+            msg: "Invalid id"
+        })
+    }
+    const store = new Store({
+        name: doc.nameStore,
+        seller: doc._id,
+        _id: doc._id,
+    })
+    await store.save()
+
+    res.status(200).json({
+        status: true,
+        message: "Your Account is now Verified"
+    })
+
+    } catch (e) {
+    res.status(400).json({
+        status: false,
+        message: e.message
+        })
+    }
+}
 
 
-export { createSeller, removeSeller, searchSeller, updateSeller, getAllSellers, getSeller,getSellerStatus }
+
+export { createSeller, removeSeller, searchSeller, updateSeller, getAllSellers, getSeller,getSellerStatus,confirmAccount }
