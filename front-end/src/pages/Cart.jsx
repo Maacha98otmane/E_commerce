@@ -201,7 +201,7 @@ const Cart = () => {
             <Top>
                 <TopButton>Continue Shopping</TopButton>
                 <TopTexts>
-                    <TopText>Shopping Bag (2)</TopText>
+                    <TopText>Shopping Bagg (2)</TopText>
                     <TopText>Your Wishlist (0)</TopText>
                 </TopTexts>
                 <TopButton type="field">Checkout Now</TopButton>
