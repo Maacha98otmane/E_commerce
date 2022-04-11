@@ -5,7 +5,8 @@
   "license": "ISC",
   "scripts": {
     "dev": "nodemon --exec babel-node App.js",
-    "build": "babel App.js -d dist"
+    "build": "babel App.js -d dist",
+    "start": "node dist/App.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
