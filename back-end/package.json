@@ -5,7 +5,7 @@
   "license": "ISC",
   "scripts": {
     "dev": "nodemon --exec babel-node App.js",
-    "build": "babel App.js -d dist",
+    "build": "babel ./src -d dist",
     "start": "node dist/App.js"
   },
   "devDependencies": {
@@ -15,6 +15,7 @@
   "dependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.9",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

@@ -3,7 +3,7 @@ import cors from "cors";
 import expressvalidator from "express-validator";
 import cookieParser from "cookie-parser";
 require("dotenv").config();
-import connectDB from "./src/config/db";
+import connectDB from "./config/db";
 import { 
           categoryRouter,
           orderRouter,
@@ -15,7 +15,7 @@ import {
           shippingCompanyRouter,
           productRouter,
           sellerRouter 
-        } from './src/api/routes/'
+        } from './api/routes'
 const host = process.env.HOST;
 const port = process.env.PORT ||8080;
 

@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 var _express = _interopRequireDefault(require("express"));
 
 var _cors = _interopRequireDefault(require("cors"));
@@ -8,11 +10,9 @@ var _expressValidator = _interopRequireDefault(require("express-validator"));
 
 var _cookieParser = _interopRequireDefault(require("cookie-parser"));
 
-var _db = _interopRequireDefault(require("./src/config/db"));
+var _db = _interopRequireDefault(require("./config/db"));
 
-var _routes = require("./src/api/routes/");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _routes = require("./api/routes");
 
 require("dotenv").config();
 
