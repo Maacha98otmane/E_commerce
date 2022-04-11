@@ -16,8 +16,8 @@ import {
           productRouter,
           sellerRouter 
         } from './src/api/routes/'
-const host = process.env.host;
-const port = process.env.port;
+const host = process.env.HOST;
+const port = process.env.PORT;
 
 const app = express();
 
