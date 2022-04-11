@@ -17,7 +17,7 @@ import {
           sellerRouter 
         } from './src/api/routes/'
 const host = process.env.HOST;
-const port = process.env.PORT;
+const port = process.env.PORT ||8080;
 
 const app = express();
 
